@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A to Z Bobcats | Earthworks & Bobcat Hire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #ffffff; color: #18181b; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f4f4f5; }
+        ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 999px; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e4e4e7;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            transition: border-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .card:hover {
+            border-color: rgba(1, 109, 200, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(ellipse at 50% 0%, #f0f7ff 0%, #ffffff 70%);
+        }
+
+        .glow-blue {
+            box-shadow: 0 0 40px rgba(1, 109, 200, 0.08), 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.05);
+        }
+        .gallery-item .overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .nav-link {
+            color: #71717a;
+            transition: color 0.15s ease;
+        }
+        .nav-link:hover { color: #016DC8; }
+
+        .form-input {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-input:focus {
+            border-color: #016DC8;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(1, 109, 200, 0.12);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideOutRight {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100%); }
+        }
+        .toast-in { animation: slideInRight 0.4s ease-out forwards; }
+        .toast-out { animation: slideOutRight 0.4s ease-in forwards; }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center px-6 bg-white/80 border-b border-zinc-100" style="backdrop-filter: blur(12px);">
+        <div class="max-w-5xl mx-auto w-full flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #016DC8, #0055A0);">
+                    <span class="iconify text-white text-sm" data-icon="lucide:hard-hat"></span>
+                </div>
+                <span class="text-sm font-semibold tracking-tight text-zinc-900">A to Z Bobcats</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#services" class="nav-link text-xs font-medium uppercase tracking-wider">Services</a>
+                <a href="#gallery" class="nav-link text-xs font-medium uppercase tracking-wider">Recent Work</a>
+                <a href="#contact" class="nav-link text-xs font-medium uppercase tracking-wider">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-150" style="background: #016DC8;">
+                Get a Quote
+                <span class="iconify text-xs" data-icon="lucide:arrow-right"></span>
+            </a>
+            <button id="mobileMenuBtn" class="md:hidden text-zinc-500 hover:text-zinc-900 transition-colors">
+                <span class="iconify text-xl" data-icon="lucide:menu"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 hidden bg-white" style="backdrop-filter: blur(40px);">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#services" class="mobile-link text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</a>
+            <a href="#gallery" class="mobile-link text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Recent Work</a>
+            <a href="#contact" class="mobile-link text-lg font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contact</a>
+            <a href="#contact" class="mt-4 px-6 py-3 rounded-full text-sm font-medium text-white" style="background: #016DC8;">Get a Quote</a>
+        </div>
+    </div>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Subtle dot pattern -->
+        <div class="absolute inset-0 opacity-[0.4]" style="background-image: radial-gradient(circle, #d4d4d8 0.8px, transparent 0.8px); background-size: 24px 24px;"></div>
+
+        <!-- Blue glow -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[350px] rounded-full opacity-[0.12]" style="background: radial-gradient(circle, rgba(1,109,200,0.5) 0%, transparent 70%); filter: blur(60px);"></div>
+
+        <div class="relative z-10 text-center px-6 pt-32 pb-20 max-w-3xl mx-auto">
+            <div class="fade-in-up inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-zinc-200 shadow-sm mb-8">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500" style="box-shadow: 0 0 8px rgba(16,185,129,0.5);"></span>
+                <span class="text-xs font-medium text-zinc-500">Now taking bookings for 2025</span>
+            </div>
+
+            <h1 class="fade-in-up delay-1 text-4xl md:text-6xl font-medium leading-[1.1] tracking-tight text-zinc-900 mb-6">
+                From A to Z,<br>
+                <span class="text-zinc-400">we've got it covered.</span>
+            </h1>
+
+            <p class="fade-in-up delay-2 text-sm md:text-base text-zinc-500 leading-relaxed max-w-lg mx-auto mb-10">
+                Professional bobcat hire and earthworks services. Whether it's a small residential job or a large-scale civil project, our experienced operators get it done right.
+            </p>
+
+            <div class="fade-in-up delay-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium text-white hover:scale-105 active:scale-95 transition-transform duration-150" style="background: #016DC8;">
+                    Request a Quote
+                    <span class="iconify" data-icon="lucide:arrow-right"></span>
+                </a>
+                <a href="#gallery" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium text-zinc-500 hover:text-zinc-900 bg-white border border-zinc-200 hover:border-zinc-300 transition-all duration-200">
+                    View Our Work
+                    <span class="iconify" data-icon="lucide:image"></span>
+                </a>
+            </div>
+
+            <div class="fade-in-up delay-4 mt-16 grid grid-cols-3 gap-6 max-w-md mx-auto">
+                <div>
+                    <div class="text-2xl md:text-3xl font-semibold text-zinc-900">15+</div>
+                    <div class="text-[10px] uppercase tracking-widest text-zinc-400 mt-1">Years</div>
+                </div>
+                <div>
+                    <div class="text-2xl md:text-3xl font-semibold text-zinc-900">500+</div>
+                    <div class="text-[10px] uppercase tracking-widest text-zinc-400 mt-1">Projects</div>
+                </div>
+                <div>
+                    <div class="text-2xl md:text-3xl font-semibold" style="color: #016DC8;">100%</div>
+                    <div class="text-[10px] uppercase tracking-widest text-zinc-400 mt-1">Licensed</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in-up delay-5">
+            <div class="w-5 h-8 rounded-full border border-zinc-300 flex items-start justify-center p-1.5">
+                <div class="w-1 h-2 rounded-full bg-zinc-400 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="py-24 px-6 bg-zinc-50/70">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-[10px] uppercase tracking-widest font-medium mb-3" style="color: #016DC8;">What We Do</p>
+                <h2 class="text-2xl md:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 mb-4">Bobcat & earthworks services</h2>
+                <p class="text-sm text-zinc-500 max-w-md mx-auto leading-relaxed">Fully equipped with modern machinery and experienced operators ready to tackle any job, big or small.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="service-card card rounded-2xl p-6">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(1,109,200,0.08);">
+                        <span class="iconify text-lg" data-icon="lucide:hard-hat" style="color: #016DC8;"></span>
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-2">Site Excavation</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Precision excavation for foundations, footings, and below-ground structures using compact and mini bobcats.</p>
+                </div>
+                <div class="service-card card rounded-2xl p-6">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(1,109,200,0.08);">
+                        <span class="iconify text-lg" data-icon="lucide:layers" style="color: #016DC8;"></span>
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-2">Land Grading</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Accurate grading and leveling to ensure proper drainage and a solid base for any construction project.</p>
+                </div>
+                <div class="service-card card rounded-2xl p-6">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(1,109,200,0.08);">
+                        <span class="iconify text-lg" data-icon="lucide:truck" style="color: #016DC8;"></span>
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-2">Earth & Soil Hauling</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Efficient removal and delivery of fill material, topsoil, and aggregate across any distance.</p>
+                </div>
+                <div class="service-card card rounded-2xl p-6">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(1,109,200,0.08);">
+                        <span class="iconify text-lg" data-icon="lucide:home" style="color: #016DC8;"></span>
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-2">Pad Preparation</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Residential and commercial building pads cut and filled to exact specifications and survey levels.</p>
+                </div>
+                <div class="service-card card rounded-2xl p-6">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(1,109,200,0.08);">
+                        <span class="iconify text-lg" data-icon="lucide:droplets" style="color: #016DC8;"></span>
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-2">Drainage Works</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Installation of French drains, swales, and culverts to manage water flow on your property.</p>
+                </div>
+                <div class="service-card card rounded-2xl p-6">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(1,109,200,0.08);">
+                        <span class="iconify text-lg" data-icon="lucide:trees" style="color: #016DC8;"></span>
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-2">Land Clearing</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Vegetation removal, stump grinding, and site clearing to prepare land for development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RECENT WORK / GALLERY ===================== -->
+    <section id="gallery" class="py-24 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-[10px] uppercase tracking-widest font-medium mb-3" style="color: #016DC8;">Recent Work</p>
+                <h2 class="text-2xl md:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 mb-4">Jobs we've completed</h2>
+                <p class="text-sm text-zinc-500 max-w-md mx-auto leading-relaxed">A selection of recent bobcat and earthworks projects across residential and commercial sites.</p>
+            </div>
+
+            <!-- 
+                ================================================
+                📷 HOW TO UPDATE GALLERY PHOTOS:
+                
+                Replace each "src" URL below with your own image.
+                
+                Example:
+                  src="your-photo-1.jpg"
+                  or
+                  src="https://your-server.com/photo-1.jpg"
+                
+                Also update the title and description text
+                inside each overlay to match your project.
+                ================================================
+            -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Photo 1 -->
+                <div class="gallery-item relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                    <img src="https://picsum.photos/seed/bobcat-excavation/800/600.jpg" alt="Commercial site excavation" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-sm font-semibold text-white">Commercial Site Prep</h3>
+                        <p class="text-xs text-zinc-300 mt-1">10-acre commercial lot — full excavation and grading</p>
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="gallery-item relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                    <img src="https://picsum.photos/seed/bobcat-grading-yard/800/600.jpg" alt="Residential land grading" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-sm font-semibold text-white">Residential Grading</h3>
+                        <p class="text-xs text-zinc-300 mt-1">Drainage correction and pad leveling for new home build</p>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="gallery-item relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                    <img src="https://picsum.photos/seed/bobcat-hauling-dirt/800/600.jpg" alt="Earth hauling project" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-sm font-semibold text-white">Road Base Preparation</h3>
+                        <p class="text-xs text-zinc-300 mt-1">Sub-grade preparation and aggregate laying for private road</p>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="gallery-item relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                    <img src="https://picsum.photos/seed/bobcat-clearing-bush/800/600.jpg" alt="Land clearing project" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-sm font-semibold text-white">Land Clearing</h3>
+                        <p class="text-xs text-zinc-300 mt-1">5-acre vegetation and stump removal for subdivision</p>
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="gallery-item relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                    <img src="https://picsum.photos/seed/bobcat-trench-drain/800/600.jpg" alt="Drainage installation" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-sm font-semibold text-white">Drainage Installation</h3>
+                        <p class="text-xs text-zinc-300 mt-1">French drain and swale system for flood-prone property</p>
+                    </div>
+                </div>
+
+                <!-- Photo 6 -->
+                <div class="gallery-item relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm">
+                    <img src="https://picsum.photos/seed/bobcat-building-pad/800/600.jpg" alt="Building pad construction" class="w-full h-full object-cover" loading="lazy">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                        <h3 class="text-sm font-semibold text-white">Building Pad</h3>
+                        <p class="text-xs text-zinc-300 mt-1">Cut and fill for large warehouse foundation pad</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 
+                📷 TO ADD MORE PHOTOS:
+                Copy any gallery-item block and paste it
+                inside the grid. Update the image, title,
+                and description for the new project.
+            -->
+
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="py-24 px-6 bg-zinc-50/70">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+                <!-- Left info -->
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest font-medium mb-3" style="color: #016DC8;">Get In Touch</p>
+                    <h2 class="text-2xl md:text-5xl font-semibold tracking-tight leading-tight text-zinc-900 mb-4">Get your free quote</h2>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-10">Fill out the form and we'll get back to you within 24 hours with an obligation-free estimate. No job too big or too small.</p>
+
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-zinc-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <span class="iconify text-zinc-400" data-icon="lucide:phone"></span>
+                            </div>
+                            <div>
+                                <div class="text-[10px] uppercase tracking-widest text-zinc-400 mb-0.5">Phone</div>
+                                <!-- UPDATE: Replace with your actual phone number -->
+                                <a href="tel:+15551234567" class="text-sm text-zinc-700 hover:text-[#016DC8] transition-colors font-medium">(555) 123-4567</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-zinc-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <span class="iconify text-zinc-400" data-icon="lucide:mail"></span>
+                            </div>
+                            <div>
+                                <div class="text-[10px] uppercase tracking-widest text-zinc-400 mb-0.5">Email</div>
+                                <!-- UPDATE: Replace with your actual email -->
+                                <a href="mailto:info@atozbobcats.com" class="text-sm text-zinc-700 hover:text-[#016DC8] transition-colors font-medium">info@atozbobcats.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-zinc-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <span class="iconify text-zinc-400" data-icon="lucide:map-pin"></span>
+                            </div>
+                            <div>
+                                <div class="text-[10px] uppercase tracking-widest text-zinc-400 mb-0.5">Service Area</div>
+                                <!-- UPDATE: Replace with your actual service area -->
+                                <span class="text-sm text-zinc-700 font-medium">Serving the Greater Metro Area & Surrounding Regions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right form -->
+                <div class="card rounded-2xl p-6 md:p-8 glow-blue">
+                    <form id="contactForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2 font-medium">First Name *</label>
+                                <input type="text" name="firstName" required class="form-input w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400" placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2 font-medium">Last Name *</label>
+                                <input type="text" name="lastName" required class="form-input w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400" placeholder="Smith">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2 font-medium">Email *</label>
+                            <input type="email" name="email" required class="form-input w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400" placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2 font-medium">Phone</label>
+                            <input type="tel" name="phone" class="form-input w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400" placeholder="(555) 000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2 font-medium">Service Needed</label>
+                            <select name="service" class="form-input w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 appearance-none" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 12px center;">
+                                <option value="">Select a service...</option>
+                                <option value="excavation">Site Excavation</option>
+                                <option value="grading">Land Grading</option>
+                                <option value="hauling">Earth & Soil Hauling</option>
+                                <option value="pad">Pad Preparation</option>
+                                <option value="drainage">Drainage Works</option>
+                                <option value="clearing">Land Clearing</option>
+                                <option value="bobcat-hire">Bobcat Hire (Wet/Dry)</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2 font-medium">Project Details *</label>
+                            <textarea name="message" required rows="4" class="form-input w-full bg-white border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 resize-none" placeholder="Tell us about your project — size, location, timeline, etc."></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn" class="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-medium text-white hover:scale-[1.02] active:scale-[0.98] transition-transform duration-150 mt-2" style="background: #016DC8;">
+                            <span id="submitText">Send Message</span>
+                            <span id="submitSpinner" class="hidden">
+                                <svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                            </span>
+                            <span class="iconify" data-icon="lucide:send" id="submitIcon"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="border-t border-zinc-200 py-12 px-6 bg-white">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #016DC8, #0055A0);">
+                    <span class="iconify text-white text-xs" data-icon="lucide:hard-hat"></span>
+                </div>
+                <span class="text-xs font-semibold tracking-tight text-zinc-500">A to Z Bobcats</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <!-- UPDATE: Add your actual social links -->
+                <a href="#" class="text-zinc-300 hover:text-[#016DC8] transition-colors">
+                    <span class="iconify text-lg" data-icon="lucide:facebook"></span>
+                </a>
+                <a href="#" class="text-zinc-300 hover:text-[#016DC8] transition-colors">
+                    <span class="iconify text-lg" data-icon="lucide:instagram"></span>
+                </a>
+                <a href="#" class="text-zinc-300 hover:text-[#016DC8] transition-colors">
+                    <span class="iconify text-lg" data-icon="lucide:linkedin"></span>
+                </a>
+            </div>
+            <!-- UPDATE: Replace with your actual business details -->
+            <p class="text-[10px] text-zinc-400 uppercase tracking-widest">© 2025 A to Z Bobcats. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===================== TOAST CONTAINER ===================== -->
+    <div id="toastContainer" class="fixed top-20 right-6 z-50 flex flex-col gap-3"></div>
+
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden', !menuOpen);
+            mobileMenuBtn.innerHTML = menuOpen
+                ? '<span class="iconify text-xl" data-icon="lucide:x"></span>'
+                : '<span class="iconify text-xl" data-icon="lucide:menu"></span>';
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.innerHTML = '<span class="iconify text-xl" data-icon="lucide:menu"></span>';
+            });
+        });
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const icon = type === 'success' ? 'lucide:check-circle' : 'lucide:alert-circle';
+            const color = type === 'success' ? 'text-emerald-500' : 'text-red-500';
+            const bg = type === 'success' ? 'border-emerald-200' : 'border-red-200';
+
+            toast.className = `toast-in flex items-center gap-3 px-5 py-3.5 rounded-xl bg-white border ${bg} shadow-lg min-w-[280px]`;
+            toast.innerHTML = `
+                <span class="iconify ${color} text-lg" data-icon="${icon}"></span>
+                <span class="text-sm text-zinc-700">${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('toast-in');
+                toast.classList.add('toast-out');
+                toast.addEventListener('animationend', () => toast.remove());
+            }, 4000);
+        }
+
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+        const submitIcon = document.getElementById('submitIcon');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            submitText.textContent = 'Sending...';
+            submitSpinner.classList.remove('hidden');
+            submitIcon.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                submitText.textContent = 'Send Message';
+                submitSpinner.classList.add('hidden');
+                submitIcon.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+
+                showToast('Message sent! We\'ll be in touch within 24 hours.', 'success');
+                contactForm.reset();
+            }, 1500);
+
+            /* 
+               ================================================
+               🔌 TO CONNECT TO A REAL BACKEND:
+               
+               Replace the setTimeout above with a fetch() call
+               to Formspree, Netlify Forms, or your own server.
+               
+               Example with Formspree:
+               ================================================
+               fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                   method: 'POST',
+                   body: new FormData(contactForm),
+                   headers: { 'Accept': 'application/json' }
+               })
+               .then(res => {
+                   if (res.ok) {
+                       showToast('Message sent! We\'ll be in touch within 24 hours.');
+                       contactForm.reset();
+                   } else {
+                       showToast('Something went wrong. Please try again.', 'error');
+                   }
+               })
+               .catch(() => {
+                   showToast('Network error. Please check your connection.', 'error');
+               })
+               .finally(() => {
+                   submitText.textContent = 'Send Message';
+                   submitSpinner.classList.add('hidden');
+                   submitIcon.classList.remove('hidden');
+                   submitBtn.disabled = false;
+                   submitBtn.style.opacity = '1';
+               });
+               ================================================
+            */
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('#services .service-card, #gallery .gallery-item').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s, border-color 0.5s ease, box-shadow 0.5s ease`;
+            observer.observe(el);
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 100;
+                if (scrollY >= top) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-zinc-900');
+                link.classList.add('text-zinc-400');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-zinc-900');
+                    link.classList.remove('text-zinc-400');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
